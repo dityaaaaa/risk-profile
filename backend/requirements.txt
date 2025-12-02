@@ -1,0 +1,10 @@
+fastapi[standard]==0.123.2
+uvicorn[standard]==0.38.0
+asyncpg==0.31.0
+pydantic==2.12.5
+pydantic-settings==2.12.0
+email-validator==2.3.0
+PyJWT==2.10.1
+passlib[argon2]==1.7.4
+argon2-cffi==25.1.0
+python-multipart==0.0.20
