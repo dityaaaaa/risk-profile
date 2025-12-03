@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from app.core.config import settings
 from app.core.db import create_db_pool, close_db_pool
-from app.api import auth
+from app.api import auth, users
 
 # --- LIFESPAN (Connection Management) ---
 @asynccontextmanager
@@ -22,6 +22,7 @@ app = FastAPI(
 
 # --- REGISTER ROUTER ---
 app.include_router(auth.router)
+app.include_router(users.router)
 
 # --- ROOT ENDPOINT (Optional) ---
 @app.get("/")

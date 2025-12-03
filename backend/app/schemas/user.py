@@ -1,21 +1,35 @@
+from enum import Enum
 from datetime import datetime
 from pydantic import BaseModel, EmailStr
 
-# Input saat Register
+class UserRole(str, Enum):
+    SUPER_ADMIN = "super_admin"
+    ERM = "erm"
+    USER = "user"
+
 class UserRegister(BaseModel):
     email: EmailStr
     full_name: str | None = None
     password: str
 
-# Output Data User (tanpa password)
+class UserCreate(BaseModel):
+    email: EmailStr
+    full_name: str | None = None
+    password: str
+    role: UserRole = UserRole.USER
+
+class UserUpdate(BaseModel):
+    full_name: str | None = None
+    email: EmailStr | None = None
+    role: UserRole | None = None
+
 class UserResponse(BaseModel):
     id: int
     email: EmailStr
     full_name: str | None
-    role: str
+    role: UserRole
     created_at: datetime
 
-# Output Token
 class Token(BaseModel):
     access_token: str
     token_type: str
